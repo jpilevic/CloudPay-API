@@ -14,14 +14,16 @@ For API support, please email jpilevic@gmail.com
 Generate to the new deposit form is granted by providing your CP-MERCHANT-API, CP-MERCHANT-USERNAME and CP-MERCHANT-PASSWORD using header basic authentication. 
 
 ```no-highlight
-GET https://api.zingle.me/v1/
+POST https://credit.depositcenter.xyz/payment/transaction
 
 {
-    "status": {
-        "text": "OK",
-        "status_code": 200,
-        "description": null
-    },
+    "user_id": "100"
+    "username": "Ceyhun Emre BOZKURT",
+    "email": "ceyhunemrebozkurt@gmail.com",
+    "process_id": "2000",
+    "amount": "100",
+    fail_url: "http://www.google.com"
+    success_url: "http://www.google.com"
     "auth": {
         "id": "4c11f5e3-50b6-4995-b471-b8ef0015488d",
         "email": "joe@example.com",
@@ -30,30 +32,15 @@ GET https://api.zingle.me/v1/
         "title": null,
         "authorization_class": "contact"
     }
-    'CP-MERCHANT-API: 683c5999-366a-4ea1-86f1-37e390ac83ec',
-    'CP-MERCHANT-USERNAME: d8a04b93-917f-47e1-8203-1feab034d989',
-    'CP-MERCHANT-PASSWORD: 9f9641dc-0329-4b1f-9d5d-69a9a108c9da',
 }
-```
-
-## API Versioning
-The first part of the URI path specifies the API version you wish to access in the format `v{version_number}`. 
-
-For example, version 1 of the API (most current) is accessible via:
-
-```no-highlight
-https://api.zingle.me/v1/
 ```
 
 ## HTTP requests
 All API requests are made by sending a secure HTTPS request using one of the following methods, depending on the action being taken:
 
 * `POST` Create a resource
-* `PUT` Update a resource
-* `GET` Get a resource or list of resources
-* `DELETE` Delete a resource
 
-For PUT and POST requests the body of your request may include a JSON payload, and the URI being requested may include a query string specifying additional filters or commands, all of which are outlined in the following sections.
+For POST requests the header of your request may include a credentials payload, and the URI being requested may include a query string specifying additional filters or commands, all of which are outlined in the following sections.
 
 ## HTTP Responses
 Each response will include a `status` object and (if successful) a `result` (`result` will be an object for single-record queries and an array for list queries).  The `status` object contains an HTTP `status_code`, `text`, `description`, `error_code` (if an error occurred - see [Error Codes]) and pagination info about the result. The `result` contains the result of a successful request.  For example, a request to the `/services/` resource might return this:
