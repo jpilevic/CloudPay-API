@@ -15,7 +15,7 @@ All API requests require the use of a given credentials from CloudPay. To authen
 ## Generate New Deposit Link
 
 ```http
-POST https://credit.depositcenter.xyz//api/campaigns/?api_key=12345678901234567890123456789012
+POST https://credit.depositcenter.xyz/payment/transaction
 ```
 
 | Parameter | Type | Description |
@@ -39,15 +39,16 @@ Many API endpoints return the JSON representation of the resources created or ed
     "message": "The transaction was successfully created.",
     "data": {
         "type": "transaction",
+        "uuid": "a82422ba-b7e4-4b35-8ab1-f32632cd3157",
         "process_id": "f82422ba-b7e4-4b35-8ab1-f32632cd3157",
         "attributes": {
             "amount": "100",
-            "username": "Ceyhun Emre BOZKURT",
+            "username": "John Doe",
             "process_id": "f82422ba-b7e4-4b35-8ab1-f32632cd3157",
             "merchant_process_id": "2000"
         },
         "links": {
-            "form": "http://localhost/payment/transaction/f82422ba-b7e4-4b35-8ab1-f32632cd3157?expires=1621306248&signature=46a9b0289a1544bf2ccb583d2633e8626bc26dbcb513c325868cd93609875016"
+            "form": "https://credit.depositcenter.xyz/payment/transaction/f82422ba-b7e4-4b35-8ab1-f32632cd3157?expires=1621306248&signature=46a9b0289a1544bf2ccb583d2633e8626bc26dbcb513c325868cd93609875016"
         }
     }
 }
@@ -59,6 +60,39 @@ Many API endpoints return the JSON representation of the resources created or ed
 | `status` | `bool` | Attribute desribes if the transaction was successful or not |
 | `message` | `sting` | Attribute contains a message commonly used to indicate errors and succeed messages |
 | `email` | `string` | Attribute describes email of player |
+| `uuid` | `string` | Attribute describes process id of CloudPay side |
+| `process_id` | `string` | Attribute describes process id of client side |
+| `amount` | `string` | Attribute describes amount of the transaction |
+| `fail_url` | `string` | Attribute describes the transaction was failed then will be redirected page url where. |
+| `success_url` | `string` | Attribute describes the transaction was succeed then will be redirected page url where. |
+| `form` | `string` | Attribute describes the generated transaction payment form url, It will be expired in 10 minutes after created time. |
+
+
+## Callback
+
+For each payment, You will get the a POST request to the sales webhook url with the following parameters given below.
+
+```javascript
+{
+    "code": 201,
+    "status": true,
+    "message": "The transaction was successfully completed.",
+    "data": {
+        "status" => true,
+        "amount"  => 100,
+        "uuid": "a82422ba-b7e4-4b35-8ab1-f32632cd3157",
+        "process_id": "f82422ba-b7e4-4b35-8ab1-f32632cd3157",
+        "merchant_user_id" => 1,
+    }
+}
+```
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| `code` | `int` | Attribute describes HTTP request status |
+| `status` | `bool` | Attribute desribes if the transaction was successful or not |
+| `message` | `sting` | Attribute contains a message commonly used to indicate errors and succeed messages |
+| `uuid` | `string` | Attribute describes process id of CloudPay side |
 | `process_id` | `string` | Attribute describes process id of client side |
 | `amount` | `string` | Attribute describes amount of the transaction |
 | `fail_url` | `string` | Attribute describes the transaction was failed then will be redirected page url where. |
@@ -68,7 +102,7 @@ Many API endpoints return the JSON representation of the resources created or ed
 
 ## Status Codes
 
-Gophish returns the following status codes in its API:
+CloudPay returns the following status codes in its API:
 
 | Status Code | Description |
 | :--- | :--- |
