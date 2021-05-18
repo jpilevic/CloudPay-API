@@ -10,8 +10,8 @@ We provide a [Postman](https://www.getpostman.com/) collection with a set of req
 ### Support
 For API support, please email jpilevic@gmail.com
 
-## Authentication
-Access to the API is granted by providing your username and password using HTTP basic authentication. The username and password used, is the same username and password you use to access the Zingle web interface.
+## Generate New Deposit Form
+Generate to the new deposit form is granted by providing your CP-MERCHANT-API, CP-MERCHANT-USERNAME and CP-MERCHANT-PASSWORD using header basic authentication. 
 
 ```no-highlight
 GET https://api.zingle.me/v1/
@@ -30,6 +30,9 @@ GET https://api.zingle.me/v1/
         "title": null,
         "authorization_class": "contact"
     }
+    'CP-MERCHANT-API: 683c5999-366a-4ea1-86f1-37e390ac83ec',
+    'CP-MERCHANT-USERNAME: d8a04b93-917f-47e1-8203-1feab034d989',
+    'CP-MERCHANT-PASSWORD: 9f9641dc-0329-4b1f-9d5d-69a9a108c9da',
 }
 ```
 
