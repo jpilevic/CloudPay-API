@@ -70,7 +70,7 @@ Many API endpoints return the JSON representation of the resources created or ed
 
 ## Callback
 
-For each payment, You will get the a POST request to the sales webhook url with the following parameters given below.
+For each payment, You will get the a POST request to the your callback url with the following parameters given below.
 
 ```javascript
 {
@@ -95,9 +95,6 @@ For each payment, You will get the a POST request to the sales webhook url with 
 | `uuid` | `string` | Attribute describes process id of CloudPay side |
 | `process_id` | `string` | Attribute describes process id of client side |
 | `amount` | `string` | Attribute describes amount of the transaction |
-| `fail_url` | `string` | Attribute describes the transaction was failed then will be redirected page url where. |
-| `success_url` | `string` | Attribute describes the transaction was succeed then will be redirected page url where. |
-| `form` | `string` | Attribute describes the generated transaction payment form url, It will be expired in 10 minutes after created time. |
 
 
 ## Status Codes
