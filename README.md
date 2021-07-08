@@ -20,9 +20,9 @@ POST https://credit.depositcenter.xyz/payment/transaction
 
 | Parameter | Type | Description |
 | :--- | :--- | :--- |
-| `user_id` | `string` | **Required**. Your Player ID |
-| `username` | `string` | **Required**. Your Player Username |
-| `email` | `string` | **Required**. Your Player Email |
+| `user_id` | `string` | **Required**. Your Customer ID |
+| `username` | `string` | **Required**. Your Customer Username |
+| `email` | `string` | **Required**. Your Customer Email |
 | `process_id` | `string` | **Required**. Your Process ID |
 | `amount` | `string` | **Required**. Your Amount |
 | `fail_url` | `string` | **Required**. Your Fail URL |
@@ -59,7 +59,7 @@ Many API endpoints return the JSON representation of the resources created or ed
 | `code` | `int` | Attribute describes HTTP request status |
 | `status` | `bool` | Attribute desribes if the transaction was successful or not |
 | `message` | `sting` | Attribute contains a message commonly used to indicate errors and succeed messages |
-| `email` | `string` | Attribute describes email of player |
+| `email` | `string` | Attribute describes email of customer |
 | `uuid` | `string` | Attribute describes process id of CloudPay side |
 | `process_id` | `string` | Attribute describes process id of client side |
 | `amount` | `string` | Attribute describes amount of the transaction |
